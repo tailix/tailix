@@ -1,3 +1,9 @@
+CP      = cp
+INSTALL = install
+MKDIR   = mkdir
+RM      = rm
+SED     = sed
+
 ABS_REPO != pwd
 SYSROOT = $(ABS_REPO)/sysroot
 
@@ -12,7 +18,7 @@ SYSROOT_TARGETS = \
 all: fhs $(SYSROOT_TARGETS)
 
 clean:
-	rm -rf build $(SYSROOT) musl-gcc.specs
+	$(RM) -rf build $(SYSROOT) musl-gcc.specs
 
 include make/busybox.mk
 include make/fhs.mk
@@ -20,7 +26,7 @@ include make/libkernaux.mk
 include make/musl.mk
 
 $(SYSROOT)/etc/hosts: etc/hosts fhs
-	install -m 644 etc/hosts $(SYSROOT)/etc/hosts
+	$(INSTALL) -m 644 etc/hosts $(SYSROOT)/etc/hosts
 
 $(SYSROOT)/etc/shells: etc/shells fhs
-	install -m 644 etc/shells $(SYSROOT)/etc/shells
+	$(INSTALL) -m 644 etc/shells $(SYSROOT)/etc/shells
