@@ -11,6 +11,9 @@ DEST_TARGETS = \
 
 all: fhs $(DEST_TARGETS)
 
+clean:
+	rm -rf build dest musl-gcc.specs
+
 include make/busybox.mk
 include make/fhs.mk
 include make/libkernaux.mk
