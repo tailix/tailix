@@ -18,7 +18,7 @@ all: $(DEST_HEADERS) $(DEST_LIBS)
 dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-data
 
-dest/usr/lib/libkernaux.a dest/usr/lib/libkernaux.la: build/libkernaux/main/Makefile
+dest/usr/lib/libkernaux.la: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-exec
 
 dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.la: build/libkernaux/i386/Makefile
