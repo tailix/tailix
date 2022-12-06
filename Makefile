@@ -13,13 +13,13 @@ dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 dest/usr/lib/libkernaux.a dest/usr/lib/libkernaux.la: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-exec
 
-dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.a dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.la: build/libkernaux/i386/Makefile
+dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.la: build/libkernaux/i386/Makefile
 	$(MAKE) -C build/libkernaux/i386 DESTDIR='$(ABS_DEST)' install-exec
 
-dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.a dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la: build/libkernaux/riscv64/Makefile
+dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la: build/libkernaux/riscv64/Makefile
 	$(MAKE) -C build/libkernaux/riscv64 DESTDIR='$(ABS_DEST)' install-exec
 
-dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.a dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la: build/libkernaux/x86_64/Makefile
+dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la: build/libkernaux/x86_64/Makefile
 	$(MAKE) -C build/libkernaux/x86_64 DESTDIR='$(ABS_DEST)' install-exec
 
 build/libkernaux/main/Makefile: vendor/libkernaux/configure
