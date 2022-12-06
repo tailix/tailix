@@ -88,6 +88,7 @@ build/busybox/.config:
 	sed -i     's!^#* *CONFIG_LSMOD[^_].*$$!CONFIG_LSMOD=n!'                    build/busybox/.config
 	sed -i     's!^#* *CONFIG_MODINFO[^_].*$$!CONFIG_MODINFO=n!'                build/busybox/.config
 	sed -i     's!^#* *CONFIG_MODPROBE[^_].*$$!CONFIG_MODPROBE=n!'              build/busybox/.config
+	sed -i     's!^#* *CONFIG_HUSH[^_].*$$!CONFIG_HUSH=n!'                      build/busybox/.config
 
 build/busybox/busybox: build/busybox/.config
 	$(MAKE) -C build/busybox
