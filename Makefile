@@ -1,21 +1,20 @@
 ABS_REPO != pwd
 ABS_DEST = $(ABS_REPO)/dest
 
-DEST_BINS = \
-	dest/bin/busybox
-DEST_CONFIGS = \
-	dest/etc/hosts \
-	dest/etc/shells
-DEST_HEADERS = \
-	dest/usr/include/kernaux.h
-DEST_LIBS = \
+DEST_TARGETS = \
+	dest/bin/busybox           \
+	dest/etc/hosts             \
+	dest/etc/shells            \
+	dest/usr/include/kernaux.h \
+	dest/usr/lib/libc.a        \
 	dest/usr/lib/libkernaux.la
 
-all: fhs $(DEST_BINS) $(DEST_CONFIGS) $(DEST_HEADERS) $(DEST_LIBS)
+all: fhs $(DEST_TARGETS)
 
 include make/busybox.mk
 include make/fhs.mk
 include make/libkernaux.mk
+include make/musl.mk
 
 dest/etc/hosts: etc/hosts fhs
 	install -m 644 etc/hosts dest/etc/hosts
