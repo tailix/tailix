@@ -1,3 +1,5 @@
+CHOWN   = sudo chown
+CHROOT  = sudo chroot
 CP      = cp
 GMAKE   = make
 INSTALL = install
@@ -19,14 +21,19 @@ SYSROOT_TARGETS = \
 	$(SYSROOT)/usr/lib/libkernaux.la
 
 all: fhs $(SYSROOT_TARGETS)
+	$(CHOWN) -R kotovalexarian:kotovalexarian $(SYSROOT)
 
 clean:
 	$(RM) -rf build $(SYSROOT) musl-gcc.specs
 
 include make/busybox.mk
+include make/etc.mk
 include make/fhs.mk
 include make/libkernaux.mk
 include make/musl.mk
+
+chroot: all
+	$(CHROOT) $(SYSROOT) /bin/sh
 
 run: image.iso
 	qemu-system-x86_64 -m 2G -cdrom image.iso
@@ -40,9 +47,3 @@ $(SYSROOT)/boot/grub/grub.cfg: boot/grub/grub.cfg fhs
 
 $(SYSROOT)/boot/bzImage: boot/bzImage fhs
 	cp boot/bzImage $(SYSROOT)/boot/bzImage
-
-$(SYSROOT)/etc/hosts: etc/hosts fhs
-	$(INSTALL) -m 644 etc/hosts $(SYSROOT)/etc/hosts
-
-$(SYSROOT)/etc/shells: etc/shells fhs
-	$(INSTALL) -m 644 etc/shells $(SYSROOT)/etc/shells
