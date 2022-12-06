@@ -4,6 +4,8 @@ MKDIR   = mkdir
 RM      = rm
 SED     = sed
 
+ARCH = x86_64
+
 ABS_REPO != pwd
 SYSROOT = $(ABS_REPO)/sysroot
 
