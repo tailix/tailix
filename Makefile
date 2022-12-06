@@ -4,7 +4,8 @@ ABS_DEST = $(ABS_REPO)/dest
 DEST_BINS = \
 	dest/bin/busybox
 DEST_CONFIGS = \
-	dest/etc/hosts
+	dest/etc/hosts \
+	dest/etc/shells
 DEST_HEADERS = \
 	dest/usr/include/kernaux.h
 DEST_LIBS = \
@@ -66,6 +67,9 @@ dest/bin/busybox: build/busybox/busybox
 
 dest/etc/hosts: etc/hosts fhs
 	install -m 644 etc/hosts dest/etc/hosts
+
+dest/etc/shells: etc/shells fhs
+	install -m 644 etc/shells dest/etc/shells
 
 dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-data
