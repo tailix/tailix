@@ -24,11 +24,11 @@ dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la: build/libkernaux/x86_64/Makefile
 
 build/libkernaux/main/Makefile: vendor/libkernaux/configure
 	mkdir -p build/libkernaux/main
-	cd build/libkernaux/main && '../../../$<' --prefix=/usr
+	cd build/libkernaux/main && '../../../vendor/libkernaux/configure' --prefix=/usr
 
 build/libkernaux/i386/Makefile: vendor/libkernaux/configure
 	mkdir -p build/libkernaux/i386
-	cd build/libkernaux/i386 && '../../../$<' \
+	cd build/libkernaux/i386 && '../../../vendor/libkernaux/configure' \
 		--host=i386-elf \
 		--prefix=/usr \
 		--libdir=/usr/lib/$(LIBSUBDIR_I386) \
@@ -38,7 +38,7 @@ build/libkernaux/i386/Makefile: vendor/libkernaux/configure
 
 build/libkernaux/riscv64/Makefile: vendor/libkernaux/configure
 	mkdir -p build/libkernaux/riscv64
-	cd build/libkernaux/riscv64 && '../../../$<' \
+	cd build/libkernaux/riscv64 && '../../../vendor/libkernaux/configure' \
 		--host=riscv64-elf \
 		--prefix=/usr \
 		--libdir=/usr/lib/$(LIBSUBDIR_RISCV64) \
@@ -48,7 +48,7 @@ build/libkernaux/riscv64/Makefile: vendor/libkernaux/configure
 
 build/libkernaux/x86_64/Makefile: vendor/libkernaux/configure
 	mkdir -p build/libkernaux/x86_64
-	cd build/libkernaux/x86_64 && '../../../$<' \
+	cd build/libkernaux/x86_64 && '../../../vendor/libkernaux/configure' \
 		--host=x86_64-elf \
 		--prefix=/usr \
 		--libdir=/usr/lib/$(LIBSUBDIR_X86_64) \
