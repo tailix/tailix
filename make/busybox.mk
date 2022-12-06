@@ -2,6 +2,7 @@ $(SYSROOT)/bin/busybox: build/busybox/busybox
 	$(GMAKE) -C build/busybox install
 
 build/busybox/busybox: build/busybox/.config $(SYSROOT)/usr/lib/libc.a
+	$(SED) -i 's!^#ifdef __linux__$$!#ifdef NO_I_AM_NOT_LINUX!' $(SRC)/vendor/busybox/init/init.c
 	$(GMAKE) -C build/busybox
 
 build/busybox/.config: musl-gcc.specs
@@ -45,7 +46,6 @@ build/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_I2CSET[ =].*$$!CONFIG_I2CSET=n!'                     build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_I2CTRANSFER[ =].*$$!CONFIG_I2CTRANSFER=n!'           build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_IFENSLAVE[ =].*$$!CONFIG_IFENSLAVE=n!'               build/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_INIT[ =].*$$!CONFIG_INIT=n!'                         build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_IONICE[ =].*$$!CONFIG_IONICE=n!'                     build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_IP[ =].*$$!CONFIG_IP=n!'                             build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_IPADDR[ =].*$$!CONFIG_IPADDR=n!'                     build/busybox/.config
