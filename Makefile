@@ -5,6 +5,8 @@ LIBSUBDIR_I386    = i386-elf
 LIBSUBDIR_RISCV64 = riscv64-elf
 LIBSUBDIR_X86_64  = x86_64-elf
 
+DEST_BINS =\
+	dest/bin/busybox
 DEST_HEADERS = \
 	dest/usr/include/kernaux.h
 DEST_LIBS = \
@@ -13,7 +15,10 @@ DEST_LIBS = \
 	dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la \
 	dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la
 
-all: $(DEST_HEADERS) $(DEST_LIBS)
+all: $(DEST_BINS) $(DEST_HEADERS) $(DEST_LIBS)
+
+dest/bin/busybox: build/busybox/busybox
+	$(MAKE) -C build/busybox install
 
 dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-data
@@ -29,6 +34,15 @@ dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la: build/libkernaux/riscv64/Makefi
 
 dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la: build/libkernaux/x86_64/Makefile
 	$(MAKE) -C build/libkernaux/x86_64 DESTDIR='$(ABS_DEST)' install-exec
+
+build/busybox/.config:
+	mkdir -p build/busybox
+	$(MAKE) -C build/busybox -f $(ABS_REPO)/vendor/busybox/Makefile KBUILD_SRC=$(ABS_REPO)/vendor/busybox defconfig
+	sed -i.1 's!^#* *CONFIG_STATIC[^_].*$$!CONFIG_STATIC=y!'                  build/busybox/.config
+	sed -i.2 's!^#* *CONFIG_PREFIX[^_].*$$!CONFIG_PREFIX="$(ABS_REPO)/dest"!' build/busybox/.config
+
+build/busybox/busybox: build/busybox/.config
+	$(MAKE) -C build/busybox
 
 build/libkernaux/main/Makefile: vendor/libkernaux/configure
 	mkdir -p build/libkernaux/main
