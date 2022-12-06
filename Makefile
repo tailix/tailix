@@ -8,7 +8,57 @@ DEST_HEADERS = \
 DEST_LIBS = \
 	dest/usr/lib/libkernaux.la
 
-all: $(DEST_BINS) $(DEST_HEADERS) $(DEST_LIBS)
+all: fhs $(DEST_BINS) $(DEST_HEADERS) $(DEST_LIBS)
+
+fhs:
+	install -d dest/bin
+	install -d dest/boot
+	install -d dest/dev
+	install -d dest/etc
+	install -d dest/etc/opt
+	install -d dest/home
+	install -d dest/lib
+	install -d dest/media
+	install -d dest/mnt
+	install -d dest/opt
+	install -d dest/root
+	install -d dest/run
+	install -d dest/sbin
+	install -d dest/srv
+	install -d dest/tmp
+	install -d dest/usr
+	install -d dest/usr/bin
+	install -d dest/usr/games
+	install -d dest/usr/include
+	install -d dest/usr/lib
+	install -d dest/usr/libexec
+	install -d dest/usr/local
+	install -d dest/usr/local/bin
+	install -d dest/usr/local/etc
+	install -d dest/usr/local/games
+	install -d dest/usr/local/include
+	install -d dest/usr/local/lib
+	install -d dest/usr/local/man
+	install -d dest/usr/local/sbin
+	install -d dest/usr/local/share
+	install -d dest/usr/local/src
+	install -d dest/usr/sbin
+	install -d dest/usr/share
+	install -d dest/usr/share/man
+	install -d dest/usr/share/misc
+	install -d dest/usr/src
+	install -d dest/var
+	install -d dest/var/cache
+	install -d dest/var/lib
+	install -d dest/var/lib/misc
+	install -d dest/var/local
+	install -d dest/var/lock
+	install -d dest/var/log
+	install -d dest/var/mail
+	install -d dest/var/opt
+	install -d dest/var/spool
+	install -d dest/var/tmp
+	ln -f -s /run dest/var/run
 
 dest/bin/busybox: build/busybox/busybox
 	$(MAKE) -C build/busybox install
