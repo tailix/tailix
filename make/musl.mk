@@ -4,5 +4,5 @@ musl-gcc.specs: $(SYSROOT)/usr/lib/libc.a
 $(SYSROOT)/usr/lib/libc.a:
 	$(MKDIR) -p build/musl
 	cd build/musl && '../../vendor/musl/configure' --prefix=/usr
-	$(MAKE) -C build/musl
-	$(MAKE) -C build/musl DESTDIR='$(SYSROOT)' install
+	$(GMAKE) -C build/musl
+	$(GMAKE) -C build/musl DESTDIR='$(SYSROOT)' install

@@ -1,4 +1,5 @@
 CP      = cp
+GMAKE   = make
 INSTALL = install
 MKDIR   = mkdir
 RM      = rm

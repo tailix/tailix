@@ -1,12 +1,12 @@
 $(SYSROOT)/bin/busybox: build/busybox/busybox
-	$(MAKE) -C build/busybox install
+	$(GMAKE) -C build/busybox install
 
 build/busybox/busybox: build/busybox/.config $(SYSROOT)/usr/lib/libc.a
-	$(MAKE) -C build/busybox
+	$(GMAKE) -C build/busybox
 
 build/busybox/.config: musl-gcc.specs
 	$(MKDIR) -p build/busybox
-	$(MAKE) -C build/busybox -f $(SRC)/vendor/busybox/Makefile KBUILD_SRC=$(SRC)/vendor/busybox defconfig
+	$(GMAKE) -C build/busybox -f $(SRC)/vendor/busybox/Makefile KBUILD_SRC=$(SRC)/vendor/busybox defconfig
 	$(CP) build/busybox/.config build/busybox/.config.bak
 	$(SED) -i 's!^#* *CONFIG_EXTRA_CFLAGS[ =].*$$!CONFIG_EXTRA_CFLAGS="-specs $(SRC)/musl-gcc.specs"!' build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_PREFIX[ =].*$$!CONFIG_PREFIX="$(SYSROOT)"!'          build/busybox/.config
