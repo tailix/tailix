@@ -1,7 +1,7 @@
-dest/bin/busybox: build/busybox/busybox
+$(SYSROOT)/bin/busybox: build/busybox/busybox
 	$(MAKE) -C build/busybox install
 
-build/busybox/busybox: build/busybox/.config dest/usr/lib/libc.a
+build/busybox/busybox: build/busybox/.config $(SYSROOT)/usr/lib/libc.a
 	$(MAKE) -C build/busybox
 
 build/busybox/.config: musl-gcc.specs
@@ -9,9 +9,9 @@ build/busybox/.config: musl-gcc.specs
 	$(MAKE) -C build/busybox -f $(ABS_REPO)/vendor/busybox/Makefile KBUILD_SRC=$(ABS_REPO)/vendor/busybox defconfig
 	cp build/busybox/.config build/busybox/.config.bak
 	sed -i 's!^#* *CONFIG_EXTRA_CFLAGS[ =].*$$!CONFIG_EXTRA_CFLAGS="-specs $(ABS_REPO)/musl-gcc.specs"!' build/busybox/.config
-	sed -i 's!^#* *CONFIG_PREFIX[ =].*$$!CONFIG_PREFIX="$(ABS_REPO)/dest"!'       build/busybox/.config
+	sed -i 's!^#* *CONFIG_PREFIX[ =].*$$!CONFIG_PREFIX="$(SYSROOT)"!'             build/busybox/.config
 	#sed -i 's!^#* *CONFIG_STATIC[ =].*$$!CONFIG_STATIC=y!'                        build/busybox/.config
-	sed -i 's!^#* *CONFIG_SYSROOT[ =].*$$!CONFIG_SYSROOT="$(ABS_REPO)/dest"!'     build/busybox/.config
+	sed -i 's!^#* *CONFIG_SYSROOT[ =].*$$!CONFIG_SYSROOT="$(SYSROOT)"!'           build/busybox/.config
 	sed -i 's!^#* *CONFIG_WERROR[ =].*$$!CONFIG_WERROR=n!'                        build/busybox/.config
 	# It's for Linux
 	sed -i 's!^#* *CONFIG_DEPMOD[ =].*$$!CONFIG_DEPMOD=n!'                        build/busybox/.config
