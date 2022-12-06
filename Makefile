@@ -38,14 +38,14 @@ dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la: build/libkernaux/x86_64/Makefile
 build/busybox/.config:
 	mkdir -p build/busybox
 	$(MAKE) -C build/busybox -f $(ABS_REPO)/vendor/busybox/Makefile KBUILD_SRC=$(ABS_REPO)/vendor/busybox defconfig
-	sed -i.1 's!^#* *CONFIG_STATIC[^_].*$$!CONFIG_STATIC=y!'                  build/busybox/.config
-	sed -i.2 's!^#* *CONFIG_PREFIX[^_].*$$!CONFIG_PREFIX="$(ABS_REPO)/dest"!' build/busybox/.config
-	sed -i.3 's!^#* *CONFIG_LINUXRC[^_].*$$!CONFIG_LINUXRC=n!'                build/busybox/.config
-	sed -i.4 's!^#* *CONFIG_DEPMOD[^_].*$$!CONFIG_DEPMOD=n!'                  build/busybox/.config
-	sed -i.5 's!^#* *CONFIG_INSMOD[^_].*$$!CONFIG_INSMOD=n!'                  build/busybox/.config
-	sed -i.6 's!^#* *CONFIG_LSMOD[^_].*$$!CONFIG_LSMOD=n!'                    build/busybox/.config
-	sed -i.7 's!^#* *CONFIG_MODINFO[^_].*$$!CONFIG_MODINFO=n!'                build/busybox/.config
-	sed -i.8 's!^#* *CONFIG_MODPROBE[^_].*$$!CONFIG_MODPROBE=n!'              build/busybox/.config
+	sed -i.bak 's!^#* *CONFIG_STATIC[^_].*$$!CONFIG_STATIC=y!'                  build/busybox/.config
+	sed -i     's!^#* *CONFIG_PREFIX[^_].*$$!CONFIG_PREFIX="$(ABS_REPO)/dest"!' build/busybox/.config
+	sed -i     's!^#* *CONFIG_LINUXRC[^_].*$$!CONFIG_LINUXRC=n!'                build/busybox/.config
+	sed -i     's!^#* *CONFIG_DEPMOD[^_].*$$!CONFIG_DEPMOD=n!'                  build/busybox/.config
+	sed -i     's!^#* *CONFIG_INSMOD[^_].*$$!CONFIG_INSMOD=n!'                  build/busybox/.config
+	sed -i     's!^#* *CONFIG_LSMOD[^_].*$$!CONFIG_LSMOD=n!'                    build/busybox/.config
+	sed -i     's!^#* *CONFIG_MODINFO[^_].*$$!CONFIG_MODINFO=n!'                build/busybox/.config
+	sed -i     's!^#* *CONFIG_MODPROBE[^_].*$$!CONFIG_MODPROBE=n!'              build/busybox/.config
 
 build/busybox/busybox: build/busybox/.config
 	$(MAKE) -C build/busybox
