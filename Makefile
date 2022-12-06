@@ -6,8 +6,8 @@ SED     = sed
 
 ARCH = x86_64
 
-ABS_REPO != pwd
-SYSROOT = $(ABS_REPO)/sysroot
+SRC != pwd
+SYSROOT = $(SRC)/sysroot
 
 SYSROOT_TARGETS = \
 	$(SYSROOT)/bin/busybox           \

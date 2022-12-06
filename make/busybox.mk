@@ -6,9 +6,9 @@ build/busybox/busybox: build/busybox/.config $(SYSROOT)/usr/lib/libc.a
 
 build/busybox/.config: musl-gcc.specs
 	$(MKDIR) -p build/busybox
-	$(MAKE) -C build/busybox -f $(ABS_REPO)/vendor/busybox/Makefile KBUILD_SRC=$(ABS_REPO)/vendor/busybox defconfig
+	$(MAKE) -C build/busybox -f $(SRC)/vendor/busybox/Makefile KBUILD_SRC=$(SRC)/vendor/busybox defconfig
 	$(CP) build/busybox/.config build/busybox/.config.bak
-	$(SED) -i 's!^#* *CONFIG_EXTRA_CFLAGS[ =].*$$!CONFIG_EXTRA_CFLAGS="-specs $(ABS_REPO)/musl-gcc.specs"!' build/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_EXTRA_CFLAGS[ =].*$$!CONFIG_EXTRA_CFLAGS="-specs $(SRC)/musl-gcc.specs"!' build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_PREFIX[ =].*$$!CONFIG_PREFIX="$(SYSROOT)"!'          build/busybox/.config
 	#$(SED) -i 's!^#* *CONFIG_STATIC[ =].*$$!CONFIG_STATIC=y!'                     build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SYSROOT[ =].*$$!CONFIG_SYSROOT="$(SYSROOT)"!'        build/busybox/.config
