@@ -5,7 +5,15 @@ LIBSUBDIR_I386    = i386-elf
 LIBSUBDIR_RISCV64 = riscv64-elf
 LIBSUBDIR_X86_64  = x86_64-elf
 
-all: dest/usr/include/kernaux.h dest/usr/lib/libkernaux.la dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.la dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la
+DEST_HEADERS = \
+	dest/usr/include/kernaux.h
+DEST_LIBS = \
+	dest/usr/lib/libkernaux.la \
+	dest/usr/lib/$(LIBSUBDIR_I386)/libkernaux.la \
+	dest/usr/lib/$(LIBSUBDIR_RISCV64)/libkernaux.la \
+	dest/usr/lib/$(LIBSUBDIR_X86_64)/libkernaux.la
+
+all: $(DEST_HEADERS) $(DEST_LIBS)
 
 dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-data
