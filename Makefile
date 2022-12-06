@@ -1,14 +1,16 @@
 ABS_REPO != pwd
 ABS_DEST = $(ABS_REPO)/dest
 
-DEST_BINS =\
+DEST_BINS = \
 	dest/bin/busybox
+DEST_CONFIGS = \
+	dest/etc/hosts
 DEST_HEADERS = \
 	dest/usr/include/kernaux.h
 DEST_LIBS = \
 	dest/usr/lib/libkernaux.la
 
-all: fhs $(DEST_BINS) $(DEST_HEADERS) $(DEST_LIBS)
+all: fhs $(DEST_BINS) $(DEST_CONFIGS) $(DEST_HEADERS) $(DEST_LIBS)
 
 fhs:
 	install -d dest/bin
@@ -58,10 +60,12 @@ fhs:
 	install -d dest/var/opt
 	install -d dest/var/spool
 	install -d dest/var/tmp
-	ln -f -s /run dest/var/run
 
 dest/bin/busybox: build/busybox/busybox
 	$(MAKE) -C build/busybox install
+
+dest/etc/hosts: etc/hosts fhs
+	install -m 644 etc/hosts dest/etc/hosts
 
 dest/usr/include/kernaux.h: build/libkernaux/main/Makefile
 	$(MAKE) -C build/libkernaux/main DESTDIR='$(ABS_DEST)' install-data
