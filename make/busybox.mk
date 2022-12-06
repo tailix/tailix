@@ -88,7 +88,6 @@ build/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_UDHCPC[ =].*$$!CONFIG_UDHCPC=n!'                     build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_UDHCPC6[ =].*$$!CONFIG_UDHCPC6=n!'                   build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_UEVENT[ =].*$$!CONFIG_UEVENT=n!'                     build/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_VI[ =].*$$!CONFIG_VI=n!'                             build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_VLOCK[ =].*$$!CONFIG_VLOCK=n!'                       build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_WATCHDOG[ =].*$$!CONFIG_WATCHDOG=n!'                 build/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_ZCIP[ =].*$$!CONFIG_ZCIP=n!'                         build/busybox/.config
