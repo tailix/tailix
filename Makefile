@@ -10,7 +10,8 @@ SED     = sed
 ARCH = x86_64
 
 SRC != pwd
-SYSROOT = $(SRC)/sysroot
+BUILDDIR = $(SRC)/build
+SYSROOT  = $(SRC)/sysroot
 
 SYSROOT_TARGETS = \
 	$(SYSROOT)/bin/busybox    \
@@ -22,7 +23,7 @@ all: fhs $(SYSROOT_TARGETS)
 	$(CHOWN) -R kotovalexarian:kotovalexarian $(SYSROOT)
 
 clean:
-	$(RM) -rf build $(SYSROOT) musl-gcc.specs
+	$(RM) -rf $(BUILDDIR) $(SYSROOT) musl-gcc.specs
 
 include make/busybox.mk
 include make/etc.mk
