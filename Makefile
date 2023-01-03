@@ -13,12 +13,10 @@ SRC != pwd
 SYSROOT = $(SRC)/sysroot
 
 SYSROOT_TARGETS = \
-	$(SYSROOT)/bin/busybox           \
-	$(SYSROOT)/etc/hosts             \
-	$(SYSROOT)/etc/shells            \
-	$(SYSROOT)/usr/include/kernaux.h \
-	$(SYSROOT)/usr/lib/libc.a        \
-	$(SYSROOT)/usr/lib/libkernaux.la
+	$(SYSROOT)/bin/busybox    \
+	$(SYSROOT)/etc/hosts      \
+	$(SYSROOT)/etc/shells     \
+	$(SYSROOT)/usr/lib/libc.a
 
 all: fhs $(SYSROOT_TARGETS)
 	$(CHOWN) -R kotovalexarian:kotovalexarian $(SYSROOT)
@@ -29,7 +27,6 @@ clean:
 include make/busybox.mk
 include make/etc.mk
 include make/fhs.mk
-include make/libkernaux.mk
 include make/musl.mk
 
 chroot: all
