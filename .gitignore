@@ -1,4 +1,4 @@
-/boot/bzImage
+/boot/bzImage*
 /build/
 /image.iso
 /musl-gcc.specs

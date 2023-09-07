@@ -20,7 +20,7 @@ SYSROOT_TARGETS = \
 	$(SYSROOT)/usr/lib/libc.a
 
 all: fhs $(SYSROOT_TARGETS)
-	$(CHOWN) -R kotovalexarian:kotovalexarian $(SYSROOT)
+	$(CHOWN) -R user:user $(SYSROOT)
 
 clean:
 	$(RM) -rf $(BUILDDIR) $(SYSROOT) musl-gcc.specs
