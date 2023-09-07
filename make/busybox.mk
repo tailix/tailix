@@ -21,6 +21,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_LSMOD[ =].*$$!CONFIG_LSMOD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_MODINFO[ =].*$$!CONFIG_MODINFO=n!'                   $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_MODPROBE[ =].*$$!CONFIG_MODPROBE=n!'                 $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_RMMOD[ =].*$$!CONFIG_RMMOD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SELINUX[ =].*$$!CONFIG_SELINUX=n!'                   $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SELINUXENABLED[ =].*$$!CONFIG_SELINUXENABLED=n!'     $(BUILDDIR)/busybox/.config
 	# Require Linux headers
