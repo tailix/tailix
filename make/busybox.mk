@@ -101,3 +101,5 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_FEATURE_VI_REGEX_SEARCH[ =].*$$!CONFIG_FEATURE_VI_REGEX_SEARCH=n!' $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_IFPLUGD[ =].*$$!CONFIG_IFPLUGD=n!'                   $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_PAM[ =].*$$!CONFIG_PAM=n!'                           $(BUILDDIR)/busybox/.config
+	# Direct use of /etc/passwd, /etc/group, /etc/shadow
+	$(SED) -i 's!^#* *CONFIG_USE_BB_PWD_GRP[ =].*$$!CONFIG_USE_BB_PWD_GRP=y!'     $(BUILDDIR)/busybox/.config

@@ -15,7 +15,10 @@ SYSROOT  = $(SRC)/sysroot
 
 SYSROOT_TARGETS = \
 	$(SYSROOT)/bin/busybox    \
+	$(SYSROOT)/etc/group      \
 	$(SYSROOT)/etc/hosts      \
+	$(SYSROOT)/etc/inittab    \
+	$(SYSROOT)/etc/passwd     \
 	$(SYSROOT)/etc/shells     \
 	$(SYSROOT)/usr/lib/libc.a
 
