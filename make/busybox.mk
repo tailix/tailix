@@ -28,15 +28,14 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	#
 	$(SED) -i 's!^#* *CONFIG_USE_BB_PWD_GRP[ =].*$$!CONFIG_USE_BB_PWD_GRP=y!'     $(BUILDDIR)/busybox/.config
 	#
-	# Unnecessary programs
+	# Unnecessary programs (e.g. nonstandard)
 	#
-	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_CTTYHACK[ =].*$$!CONFIG_CTTYHACK=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DNSD[ =].*$$!CONFIG_DNSD=n!'                         $(BUILDDIR)/busybox/.config
-	#
-	# It's for other distributions
-	#
 	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_PIPE_PROGRESS[ =].*$$!CONFIG_PIPE_PROGRESS=n!'       $(BUILDDIR)/busybox/.config
 	#
 	# runit init system
 	#
