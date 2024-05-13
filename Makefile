@@ -11,6 +11,7 @@ ARCH = x86_64
 
 SRC != pwd
 BUILDDIR = $(SRC)/build
+SCRIPTS  = $(SRC)/scripts
 SYSROOT  = $(SRC)/sysroot
 
 SYSROOT_TARGETS = \
