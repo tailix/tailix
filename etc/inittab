@@ -1,8 +1,8 @@
 ::sysinit:/bin/hostname -F /etc/hostname
 
 tty1::respawn:/sbin/getty 38400 tty1
-tty2::respawn:/sbin/getty 38400 tty2
-tty3::respawn:/sbin/getty 38400 tty3
-tty4::respawn:/sbin/getty 38400 tty4
-tty5::respawn:/sbin/getty 38400 tty5
-tty6::respawn:/sbin/getty 38400 tty6
+tty2::respawn:/sbin/getty 38400 tty2 -I '\033[H\033[J'
+tty3::respawn:/sbin/getty 38400 tty3 -I '\033[H\033[J'
+tty4::respawn:/sbin/getty 38400 tty4 -I '\033[H\033[J'
+tty5::respawn:/sbin/getty 38400 tty5 -I '\033[H\033[J'
+tty6::respawn:/sbin/getty 38400 tty6 -I '\033[H\033[J'
