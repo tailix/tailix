@@ -28,6 +28,12 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	#
 	$(SED) -i 's!^#* *CONFIG_USE_BB_PWD_GRP[ =].*$$!CONFIG_USE_BB_PWD_GRP=y!'     $(BUILDDIR)/busybox/.config
 	#
+	# Unnecessary programs: system
+	#
+	$(SED) -i 's!^#* *CONFIG_BOOTCHARTD[ =].*$$!CONFIG_BOOTCHARTD=n!'             $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_FAKEIDENTD[ =].*$$!CONFIG_FAKEIDENTD=n!'             $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_INETD[ =].*$$!CONFIG_INETD=n!'                       $(BUILDDIR)/busybox/.config
+	#
 	# Unnecessary programs: server
 	#
 	$(SED) -i 's!^#* *CONFIG_DHCPRELAY[ =].*$$!CONFIG_DHCPRELAY=n!'               $(BUILDDIR)/busybox/.config
@@ -42,7 +48,6 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	# Unnecessary programs: nonstandard
 	#
 	$(SED) -i 's!^#* *CONFIG_ADD_SHELL[ =].*$$!CONFIG_ADD_SHELL=n!'               $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_BOOTCHARTD[ =].*$$!CONFIG_BOOTCHARTD=n!'             $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_CTTYHACK[ =].*$$!CONFIG_CTTYHACK=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DEVMEM[ =].*$$!CONFIG_DEVMEM=n!'                     $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
