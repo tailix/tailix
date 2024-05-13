@@ -34,7 +34,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_DNSD[ =].*$$!CONFIG_DNSD=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_FEATURE_NTPD_SERVER[ =].*$$!CONFIG_FEATURE_NTPD_SERVER=n!' $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_FTPD[ =].*$$!CONFIG_FTPD=n!'                         $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_HTPD[ =].*$$!CONFIG_HTPD=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_HTTPD[ =].*$$!CONFIG_HTTPD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_TELNETD[ =].*$$!CONFIG_TELNETD=n!'                   $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_TFTPD[ =].*$$!CONFIG_TFTPD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_UDHCPD[ =].*$$!CONFIG_UDHCPD=n!'                     $(BUILDDIR)/busybox/.config
