@@ -27,6 +27,18 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	# It's for other distributions
 	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
+	# runit init system
+	$(SED) -i 's!^#* *CONFIG_CHPST[ =].*$$!CONFIG_CHPST=n!'                       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_ENVDIR[ =].*$$!CONFIG_ENVDIR=n!'                     $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_ENVUIDGID[ =].*$$!CONFIG_ENVUIDGID=n!'               $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_RUNSV[ =].*$$!CONFIG_RUNSV=n!'                       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_RUNSVDIR[ =].*$$!CONFIG_RUNSVDIR=n!'                 $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SETUIDGID[ =].*$$!CONFIG_SETUIDGID=n!'               $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SOFTLIMIT[ =].*$$!CONFIG_SOFTLIMIT=n!'               $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SV[ =].*$$!CONFIG_SV=n!'                             $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SVC[ =].*$$!CONFIG_SVC=n!'                           $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SVLOGD[ =].*$$!CONFIG_SVLOGD=n!'                     $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SVOK[ =].*$$!CONFIG_SVOK=n!'                         $(BUILDDIR)/busybox/.config
 	# Require Linux headers
 	$(SED) -i 's!^#* *CONFIG_ACPID[ =].*$$!CONFIG_ACPID=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_BEEP[ =].*$$!CONFIG_BEEP=n!'                         $(BUILDDIR)/busybox/.config
