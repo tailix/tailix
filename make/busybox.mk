@@ -24,6 +24,9 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_RMMOD[ =].*$$!CONFIG_RMMOD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SELINUX[ =].*$$!CONFIG_SELINUX=n!'                   $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SELINUXENABLED[ =].*$$!CONFIG_SELINUXENABLED=n!'     $(BUILDDIR)/busybox/.config
+	# It's for other distributions
+	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
 	# Require Linux headers
 	$(SED) -i 's!^#* *CONFIG_ACPID[ =].*$$!CONFIG_ACPID=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_BEEP[ =].*$$!CONFIG_BEEP=n!'                         $(BUILDDIR)/busybox/.config
