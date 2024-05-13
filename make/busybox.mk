@@ -30,6 +30,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	#
 	# Unnecessary programs: nonstandard
 	#
+	$(SED) -i 's!^#* *CONFIG_ADD_SHELL[ =].*$$!CONFIG_ADD_SHELL=n!'               $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_BOOTCHARTD[ =].*$$!CONFIG_BOOTCHARTD=n!'             $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_CTTYHACK[ =].*$$!CONFIG_CTTYHACK=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DEVMEM[ =].*$$!CONFIG_DEVMEM=n!'                     $(BUILDDIR)/busybox/.config
@@ -38,6 +39,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_PIPE_PROGRESS[ =].*$$!CONFIG_PIPE_PROGRESS=n!'       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_REMOVE_SHELL[ =].*$$!CONFIG_REMOVE_SHELL=n!'         $(BUILDDIR)/busybox/.config
 	#
 	# Unnecessary programs: runit init system
 	#
