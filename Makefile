@@ -27,7 +27,7 @@ all: fhs $(SYSROOT_TARGETS)
 	$(CHOWN) -R user:user $(SYSROOT)
 
 clean:
-	$(RM) -rf $(BUILDDIR) $(SYSROOT) musl-gcc.specs
+	$(RM) -rf $(BUILDDIR) $(SYSROOT) musl-gcc.specs image.iso
 
 include make/busybox.mk
 include make/etc.mk
