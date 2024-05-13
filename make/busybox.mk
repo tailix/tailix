@@ -33,6 +33,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_BOOTCHARTD[ =].*$$!CONFIG_BOOTCHARTD=n!'             $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_FAKEIDENTD[ =].*$$!CONFIG_FAKEIDENTD=n!'             $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_INETD[ =].*$$!CONFIG_INETD=n!'                       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_LPD[ =].*$$!CONFIG_LPD=n!'                           $(BUILDDIR)/busybox/.config
 	#
 	# Unnecessary programs: server
 	#
@@ -60,6 +61,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_MIM[ =].*$$!CONFIG_MIM=n!'                           $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_PIPE_PROGRESS[ =].*$$!CONFIG_PIPE_PROGRESS=n!'       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_REMOVE_SHELL[ =].*$$!CONFIG_REMOVE_SHELL=n!'         $(BUILDDIR)/busybox/.config
 	#
