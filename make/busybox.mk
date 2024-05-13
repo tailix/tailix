@@ -45,6 +45,13 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_TFTPD[ =].*$$!CONFIG_TFTPD=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_UDHCPD[ =].*$$!CONFIG_UDHCPD=n!'                     $(BUILDDIR)/busybox/.config
 	#
+	# Unnecessary programs: mail
+	#
+	$(SED) -i 's!^#* *CONFIG_MAKEMIME[ =].*$$!CONFIG_MAKEMIME=n!'                 $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_POPMAILDIR[ =].*$$!CONFIG_POPMAILDIR=n!'             $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_REFORMIME[ =].*$$!CONFIG_REFORMIME=n!'               $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SENDMAIL[ =].*$$!CONFIG_SENDMAIL=n!'                 $(BUILDDIR)/busybox/.config
+	#
 	# Unnecessary programs: nonstandard
 	#
 	$(SED) -i 's!^#* *CONFIG_ADD_SHELL[ =].*$$!CONFIG_ADD_SHELL=n!'               $(BUILDDIR)/busybox/.config
