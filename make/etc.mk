@@ -14,6 +14,10 @@ $(SYSROOT)/etc/inittab: etc/inittab
 	$(INSTALL) -d $(SYSROOT)/etc
 	$(INSTALL) -m 644 etc/inittab $(SYSROOT)/etc/inittab
 
+$(SYSROOT)/etc/issue: etc/issue
+	$(INSTALL) -d $(SYSROOT)/etc
+	$(INSTALL) -m 644 etc/issue $(SYSROOT)/etc/issue
+
 $(SYSROOT)/etc/passwd: etc/passwd
 	$(INSTALL) -d $(SYSROOT)/etc
 	$(INSTALL) -m 644 etc/passwd $(SYSROOT)/etc/passwd

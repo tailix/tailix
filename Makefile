@@ -19,6 +19,7 @@ SYSROOT_TARGETS = \
 	$(SYSROOT)/etc/hostname   \
 	$(SYSROOT)/etc/hosts      \
 	$(SYSROOT)/etc/inittab    \
+	$(SYSROOT)/etc/issue      \
 	$(SYSROOT)/etc/passwd     \
 	$(SYSROOT)/etc/shells     \
 	$(SYSROOT)/usr/lib/libc.a
