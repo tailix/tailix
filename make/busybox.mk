@@ -14,20 +14,32 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	#$(SED) -i 's!^#* *CONFIG_STATIC[ =].*$$!CONFIG_STATIC=y!'                     $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SYSROOT[ =].*$$!CONFIG_SYSROOT="$(SYSROOT)"!'        $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_WERROR[ =].*$$!CONFIG_WERROR=n!'                     $(BUILDDIR)/busybox/.config
-	# It's for Linux
-	$(SED) -i 's!^#* *CONFIG_DEPMOD[ =].*$$!CONFIG_DEPMOD=n!'                     $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_INSMOD[ =].*$$!CONFIG_INSMOD=n!'                     $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_LINUXRC[ =].*$$!CONFIG_LINUXRC=n!'                   $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_LSMOD[ =].*$$!CONFIG_LSMOD=n!'                       $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_MODINFO[ =].*$$!CONFIG_MODINFO=n!'                   $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_MODPROBE[ =].*$$!CONFIG_MODPROBE=n!'                 $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_RMMOD[ =].*$$!CONFIG_RMMOD=n!'                       $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_SELINUX[ =].*$$!CONFIG_SELINUX=n!'                   $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_SELINUXENABLED[ =].*$$!CONFIG_SELINUXENABLED=n!'     $(BUILDDIR)/busybox/.config
+	#
+	# https://wiki.musl-libc.org/building-busybox.html
+	#
+	$(SED) -i 's!^#* *CONFIG_EXTRA_COMPAT[ =].*$$!CONFIG_EXTRA_COMPAT=n!'         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_FEATURE_INETD_RPC[ =].*$$!CONFIG_FEATURE_INETD_RPC=n!' $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_FEATURE_MOUNT_NFS[ =].*$$!CONFIG_FEATURE_MOUNT_NFS=n!' $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_FEATURE_VI_REGEX_SEARCH[ =].*$$!CONFIG_FEATURE_VI_REGEX_SEARCH=n!' $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_IFPLUGD[ =].*$$!CONFIG_IFPLUGD=n!'                   $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_PAM[ =].*$$!CONFIG_PAM=n!'                           $(BUILDDIR)/busybox/.config
+	#
+	# Direct use of /etc/passwd, /etc/group, /etc/shadow
+	#
+	$(SED) -i 's!^#* *CONFIG_USE_BB_PWD_GRP[ =].*$$!CONFIG_USE_BB_PWD_GRP=y!'     $(BUILDDIR)/busybox/.config
+	#
+	# Unnecessary programs
+	#
+	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_DNSD[ =].*$$!CONFIG_DNSD=n!'                         $(BUILDDIR)/busybox/.config
+	#
 	# It's for other distributions
+	#
 	$(SED) -i 's!^#* *CONFIG_DPKG[ =].*$$!CONFIG_DPKG=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_DPKG_DEB[ =].*$$!CONFIG_DPKG_DEB=n!'                 $(BUILDDIR)/busybox/.config
+	#
 	# runit init system
+	#
 	$(SED) -i 's!^#* *CONFIG_CHPST[ =].*$$!CONFIG_CHPST=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_ENVDIR[ =].*$$!CONFIG_ENVDIR=n!'                     $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_ENVUIDGID[ =].*$$!CONFIG_ENVUIDGID=n!'               $(BUILDDIR)/busybox/.config
@@ -39,7 +51,21 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_SVC[ =].*$$!CONFIG_SVC=n!'                           $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SVLOGD[ =].*$$!CONFIG_SVLOGD=n!'                     $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_SVOK[ =].*$$!CONFIG_SVOK=n!'                         $(BUILDDIR)/busybox/.config
+	#
+	# It's for Linux, we are not Linux
+	#
+	$(SED) -i 's!^#* *CONFIG_DEPMOD[ =].*$$!CONFIG_DEPMOD=n!'                     $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_INSMOD[ =].*$$!CONFIG_INSMOD=n!'                     $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_LINUXRC[ =].*$$!CONFIG_LINUXRC=n!'                   $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_LSMOD[ =].*$$!CONFIG_LSMOD=n!'                       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_MODINFO[ =].*$$!CONFIG_MODINFO=n!'                   $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_MODPROBE[ =].*$$!CONFIG_MODPROBE=n!'                 $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_RMMOD[ =].*$$!CONFIG_RMMOD=n!'                       $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SELINUX[ =].*$$!CONFIG_SELINUX=n!'                   $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_SELINUXENABLED[ =].*$$!CONFIG_SELINUXENABLED=n!'     $(BUILDDIR)/busybox/.config
+	#
 	# Require Linux headers
+	#
 	$(SED) -i 's!^#* *CONFIG_ACPID[ =].*$$!CONFIG_ACPID=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_BEEP[ =].*$$!CONFIG_BEEP=n!'                         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_BLKDISCARD[ =].*$$!CONFIG_BLKDISCARD=n!'             $(BUILDDIR)/busybox/.config
@@ -107,15 +133,3 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_VLOCK[ =].*$$!CONFIG_VLOCK=n!'                       $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_WATCHDOG[ =].*$$!CONFIG_WATCHDOG=n!'                 $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_ZCIP[ =].*$$!CONFIG_ZCIP=n!'                         $(BUILDDIR)/busybox/.config
-	# Unnecessary programs
-	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_DNSD[ =].*$$!CONFIG_DNSD=n!'                         $(BUILDDIR)/busybox/.config
-	# https://wiki.musl-libc.org/building-busybox.html
-	$(SED) -i 's!^#* *CONFIG_EXTRA_COMPAT[ =].*$$!CONFIG_EXTRA_COMPAT=n!'         $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_FEATURE_INETD_RPC[ =].*$$!CONFIG_FEATURE_INETD_RPC=n!' $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_FEATURE_MOUNT_NFS[ =].*$$!CONFIG_FEATURE_MOUNT_NFS=n!' $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_FEATURE_VI_REGEX_SEARCH[ =].*$$!CONFIG_FEATURE_VI_REGEX_SEARCH=n!' $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_IFPLUGD[ =].*$$!CONFIG_IFPLUGD=n!'                   $(BUILDDIR)/busybox/.config
-	$(SED) -i 's!^#* *CONFIG_PAM[ =].*$$!CONFIG_PAM=n!'                           $(BUILDDIR)/busybox/.config
-	# Direct use of /etc/passwd, /etc/group, /etc/shadow
-	$(SED) -i 's!^#* *CONFIG_USE_BB_PWD_GRP[ =].*$$!CONFIG_USE_BB_PWD_GRP=y!'     $(BUILDDIR)/busybox/.config
