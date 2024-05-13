@@ -109,6 +109,7 @@ $(BUILDDIR)/busybox/.config: musl-gcc.specs
 	$(SED) -i 's!^#* *CONFIG_ZCIP[ =].*$$!CONFIG_ZCIP=n!'                         $(BUILDDIR)/busybox/.config
 	# Unnecessary programs
 	$(SED) -i 's!^#* *CONFIG_HUSH[ =].*$$!CONFIG_HUSH=n!'                         $(BUILDDIR)/busybox/.config
+	$(SED) -i 's!^#* *CONFIG_DNSD[ =].*$$!CONFIG_DNSD=n!'                         $(BUILDDIR)/busybox/.config
 	# https://wiki.musl-libc.org/building-busybox.html
 	$(SED) -i 's!^#* *CONFIG_EXTRA_COMPAT[ =].*$$!CONFIG_EXTRA_COMPAT=n!'         $(BUILDDIR)/busybox/.config
 	$(SED) -i 's!^#* *CONFIG_FEATURE_INETD_RPC[ =].*$$!CONFIG_FEATURE_INETD_RPC=n!' $(BUILDDIR)/busybox/.config
