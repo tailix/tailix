@@ -37,6 +37,7 @@ fhs:
 	@$(INSTALL) -d $(SYSROOT)/usr/src
 	@$(INSTALL) -d $(SYSROOT)/var
 	@$(INSTALL) -d $(SYSROOT)/var/cache
+	@$(INSTALL) -d $(SYSROOT)/var/empty
 	@$(INSTALL) -d $(SYSROOT)/var/lib
 	@$(INSTALL) -d $(SYSROOT)/var/lib/misc
 	@$(INSTALL) -d $(SYSROOT)/var/local
